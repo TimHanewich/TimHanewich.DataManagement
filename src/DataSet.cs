@@ -31,7 +31,19 @@ namespace TimHanewich.DataSetManagement
                         {
                             DataAttribute da = new DataAttribute();
                             da.Name = csv.Rows[0].Values[r];
-                            da.Value = csv.Rows[t].Values[r];
+
+                            //Get the value
+                            string val = csv.Rows[t].Values[r];
+                            if (val == "")
+                            {
+                                da.Value = null; //If it is blank, set it to null
+                            }
+                            else
+                            {
+                                da.Value = csv.Rows[t].Values[r];
+                            }
+
+                            
                             Attributes.Add(da);
                         }
 
