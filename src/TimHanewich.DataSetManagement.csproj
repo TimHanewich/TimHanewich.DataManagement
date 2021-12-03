@@ -6,7 +6,7 @@
     <Authors>Tim Hanewich</Authors>
     <Description>Library for managing and normalizing data sets</Description>
     <Copyright>Tim Hanewich</Copyright>
-    <PackageLicenseFile>../License.md</PackageLicenseFile>
+    <PackageLicenseFile>..\..\License.md</PackageLicenseFile>
     <RepositoryUrl>https://github.com/TimHanewich/TimHanewich.DataSetManagement</RepositoryUrl>
     <PackageIcon>data_table_icon.png</PackageIcon>
     <PackageTags>data management,data,data set,data set management</PackageTags>
@@ -23,7 +23,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="License.md">
+    <None Include="..\License.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
