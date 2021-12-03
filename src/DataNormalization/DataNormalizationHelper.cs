@@ -26,17 +26,20 @@ namespace TimHanewich.DataSetManagement.DataNormalization
 
                 if (da != null)
                 {
-                    float val;
-                    try
+                    if (da.Value != null)
                     {
-                        val = Convert.ToSingle(da.Value);
+                        float val;
+                        try
+                        {
+                            val = Convert.ToSingle(da.Value);
+                        }
+                        catch
+                        {
+                            throw new Exception("Unable to convert value '" + da.Value + "' of attribute '" + attribute_name + "' to a float value.");
+                        }
+                        RawMin = Math.Min(RawMin, val);
+                        RawMax = Math.Max(RawMax, val);
                     }
-                    catch
-                    {
-                        throw new Exception("Unable to convert value '" + da.Value + "' of attribute '" + attribute_name + "' to a float value.");
-                    }
-                    RawMin = Math.Min(RawMin, val);
-                    RawMax = Math.Max(RawMax, val);
                 }
             }
             if (RawMin == float.MaxValue && RawMax == float.MinValue)
@@ -61,27 +64,30 @@ namespace TimHanewich.DataSetManagement.DataNormalization
 
                 if (da != null)
                 {
-                    float val = 0;
-                    bool Continue = true;
-                    try
+                    if (da.Value != null)
                     {
-                        val = Convert.ToSingle(da.Value);
-                    }
-                    catch
-                    {
-                        Continue = false;
-                    }
+                        float val = 0;
+                        bool Continue = true;
+                        try
+                        {
+                            val = Convert.ToSingle(da.Value);
+                        }
+                        catch
+                        {
+                            Continue = false;
+                        }
 
-                    if (Continue)
-                    {
-                        //First get as a percentage
-                        val = (val - RawMin) / (RawMax - RawMin);
+                        if (Continue)
+                        {
+                            //First get as a percentage
+                            val = (val - RawMin) / (RawMax - RawMin);
 
-                        //Then apply the asked for scaling
-                        val = floor + ((ceiling - floor) * val);
+                            //Then apply the asked for scaling
+                            val = floor + ((ceiling - floor) * val);
 
-                        //Set the value
-                        da.Value = val.ToString();
+                            //Set the value
+                            da.Value = val.ToString();
+                        }
                     }
                 }
             }
